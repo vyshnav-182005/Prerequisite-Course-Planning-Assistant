@@ -181,8 +181,16 @@ def retrieve(query: str, k: int = TOP_K) -> List[dict]:
     effective_k = min(k, count)
 
     try:
+        # Generate the query embedding directly and pass it as query_embeddings.
+        # This avoids a ChromaDB version-compatibility issue where the library may
+        # call embed_query() (returning List[float]) instead of __call__()
+        # (returning List[List[float]]) for query_texts, causing ChromaDB to
+        # receive a 1-D list and raise:
+        #   "argument 'query_embeddings': 'float' object cannot be converted to 'Sequence'"
+        embed_fn = _get_embedding_function()
+        query_embeddings = embed_fn([query])  # always List[List[float]]
         results = collection.query(
-            query_texts=[query],
+            query_embeddings=query_embeddings,
             n_results=effective_k,
         )
     except Exception as e:
