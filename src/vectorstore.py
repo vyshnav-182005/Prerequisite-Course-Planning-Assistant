@@ -49,11 +49,15 @@ def _get_embedding_function():
             def __call__(self, input: List[str]) -> List[List[float]]:
                 embeddings: List[List[float]] = []
                 for text in input:
-                    if not text or not text.strip():
+                    # Handle both string and list inputs
+                    if isinstance(text, list):
+                        text = " ".join(str(t) for t in text)
+                    
+                    if not text or not str(text).strip():
                         embeddings.append([0.0] * 384)  # Default zero vector
                         continue
                     try:
-                        payload = {"model": self._model, "prompt": text.strip()}
+                        payload = {"model": self._model, "prompt": str(text).strip()}
                         response = requests.post(self._url, json=payload, timeout=120)
                         response.raise_for_status()
                         data = response.json()
