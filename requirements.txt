@@ -1,0 +1,12 @@
+langgraph
+langchain
+langchain-community
+langchain-core
+chromadb
+pypdf
+beautifulsoup4
+requests
+gradio
+pydantic
+python-dotenv
+tiktoken
