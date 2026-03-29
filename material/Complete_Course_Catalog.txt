@@ -1,0 +1,639 @@
+================================================================================
+COMPREHENSIVE UNIVERSITY COURSE CATALOG
+Bachelor of Science in Artificial Intelligence Engineering (AIE)
+Academic Year 2024-2025
+================================================================================
+
+GENERAL INFORMATION
+================================================================================
+
+Degree Requirements: 120 Credits
+Minimum Grade: C- (1.7 GPA) for progression
+Credit Load: 12-18 credits per semester (recommended 15)
+Total Semesters: 8 (4 years)
+
+================================================================================
+SEMESTER 1 COURSES
+================================================================================
+
+COURSE: 23MAT106
+Title: Mathematics for Intelligent Systems 1
+Credits: 4
+Prerequisites: None
+Description: This foundational mathematics course covers linear algebra, vectors,
+matrices, and their applications in computing. Students learn matrix operations,
+eigenvalues, eigenvectors, and linear transformations essential for machine learning.
+Course Objectives:
+- Understand vector and matrix operations
+- Apply linear algebra concepts to computational problems
+- Solve systems of linear equations
+Assessment: Lectures, problem sets, quizzes, midterm exam (40%), final exam (40%)
+
+---
+
+COURSE: 23AID101
+Title: Computational Thinking
+Credits: 3
+Prerequisites: None
+Description: Introduction to computational thinking, problem-solving strategies,
+and algorithm design. Students learn decomposition, pattern recognition, abstraction,
+and algorithm design principles.
+Course Objectives:
+- Develop computational problem-solving skills
+- Learn algorithm design and analysis basics
+- Understand computational complexity
+Assessment: Lab assignments (50%), project work (50%)
+
+---
+
+COURSE: 23PHY104
+Title: Computational Mechanics 1
+Credits: 3
+Prerequisites: None
+Co-requisites: 23MAT106 (recommended)
+Description: Introduction to physics principles relevant to computational systems.
+Covers kinematics, dynamics, forces, and motion. Emphasizes mathematical modeling
+and computational simulation.
+Course Objectives:
+- Understand fundamental physics concepts
+- Learn to model physical systems computationally
+- Apply physics to real-world problems
+Assessment: Lectures, lab work (30%), quizzes (20%), exams (50%)
+
+---
+
+COURSE: 23AID102
+Title: Elements of Computing 1
+Credits: 3
+Prerequisites: None
+Co-requisites: 23AID101 (recommended)
+Description: Fundamentals of computer organization, data representation, boolean
+logic, and basic digital circuits. Introduction to how computers work at the
+hardware level.
+Course Objectives:
+- Understand computer architecture
+- Learn binary representation and logic gates
+- Understand memory and storage systems
+Assessment: Problem sets (30%), quizzes (20%), final exam (50%)
+
+---
+
+COURSE: 23AID103
+Title: Programming Fundamentals in Python
+Credits: 3
+Prerequisites: None
+Co-requisites: 23AID101 (recommended)
+Description: Introduction to programming using Python. Covers variables, control
+structures, functions, data structures, and basic object-oriented programming.
+Course Objectives:
+- Learn Python syntax and programming basics
+- Master control flow and functions
+- Understand data structures (lists, dictionaries, sets)
+Assessment: Code assignments (60%), quizzes (20%), final project (20%)
+
+---
+
+COURSE: 23ENG101
+Title: Professional Communication
+Credits: 3
+Prerequisites: None
+Description: Develops written and oral communication skills for technical professionals.
+Includes report writing, presentations, and technical documentation.
+Course Objectives:
+- Communicate technical ideas effectively
+- Write clear technical reports
+- Deliver professional presentations
+Assessment: Writing assignments (40%), presentations (30%), participation (30%)
+
+================================================================================
+SEMESTER 2 COURSES
+================================================================================
+
+COURSE: 23MAT107
+Title: Mathematics for Intelligent Systems 2
+Credits: 4
+Prerequisites: 23MAT106
+Description: Continuation of linear algebra with applications to machine learning.
+Covers calculus, derivatives, gradients, optimization techniques, and probability theory.
+Course Objectives:
+- Master calculus concepts (derivatives, integrals)
+- Understand gradient optimization
+- Learn probability and statistics fundamentals
+Assessment: Problem sets (30%), quizzes (20%), midterm (25%), final (25%)
+
+---
+
+COURSE: 23AID104
+Title: Data Structures and Algorithms
+Credits: 4
+Prerequisites: 23AID101, 23AID103
+Description: In-depth study of data structures (arrays, linked lists, trees, graphs)
+and algorithm design. Covers sorting, searching, and algorithm analysis.
+Course Objectives:
+- Master fundamental data structures
+- Understand algorithm analysis (Big O notation)
+- Implement and analyze algorithms
+Assessment: Programming assignments (50%), quizzes (20%), final exam (30%)
+
+---
+
+COURSE: 23CSC201
+Title: Basic Electronics
+Credits: 3
+Prerequisites: 23PHY104
+Description: Introduction to electronic components, circuits, and circuit analysis.
+Covers resistors, capacitors, inductors, diodes, and transistors.
+Course Objectives:
+- Understand electronic components
+- Analyze basic circuits
+- Learn circuit simulation and design
+Assessment: Lab work (40%), problem sets (30%), exam (30%)
+
+---
+
+COURSE: 23AID105
+Title: Logic and Discrete Mathematics
+Credits: 3
+Prerequisites: 23MAT106
+Description: Study of logic, set theory, relations, functions, and graph theory.
+Essential for formal reasoning in computer science.
+Course Objectives:
+- Master propositional and predicate logic
+- Understand set theory and relations
+- Learn graph theory basics
+Assessment: Problem sets (40%), quizzes (30%), exam (30%)
+
+---
+
+COURSE: 23AID106
+Title: Database Fundamentals
+Credits: 3
+Prerequisites: 23AID104
+Description: Introduction to database design, SQL, and data modeling. Covers
+relational databases, normalization, and query optimization.
+Course Objectives:
+- Understand database design principles
+- Master SQL query language
+- Design efficient database schemas
+Assessment: SQL assignments (50%), project (30%), exam (20%)
+
+---
+
+COURSE: 23PSY101
+Title: Introduction to Cognitive Science
+Credits: 3
+Prerequisites: None
+Description: Introduction to cognitive science, perception, learning, memory, and
+decision-making. Relevant for AI system design.
+Course Objectives:
+- Understand human cognition
+- Learn cognitive models
+- Understand AI-human interaction
+Assessment: Essays (40%), project (40%), discussion (20%)
+
+================================================================================
+SEMESTER 3 COURSES
+================================================================================
+
+COURSE: 23AID201
+Title: Introduction to Machine Learning
+Credits: 4
+Prerequisites: 23MAT107, 23AID104
+Description: Fundamentals of machine learning including supervised learning,
+unsupervised learning, regression, classification, and evaluation metrics.
+Course Objectives:
+- Understand ML algorithms (regression, classification, clustering)
+- Learn model evaluation and validation
+- Implement ML models using Python
+Assessment: Programming projects (60%), exams (30%), participation (10%)
+
+---
+
+COURSE: 23AID202
+Title: Artificial Intelligence Fundamentals
+Credits: 4
+Prerequisites: 23AID104, 23AID105
+Description: Foundations of AI including search algorithms, knowledge representation,
+reasoning, and planning. Covers BFS, DFS, A*, minimax, and constraint satisfaction.
+Course Objectives:
+- Master search and optimization algorithms
+- Understand knowledge representation
+- Learn reasoning and planning techniques
+Assessment: Assignments (40%), projects (40%), exam (20%)
+
+---
+
+COURSE: 23CSC202
+Title: Digital Signal Processing
+Credits: 3
+Prerequisites: 23MAT107, 23AID102
+Description: Signal processing fundamentals including Fourier analysis, filtering,
+and signal transformation. Applications to audio and communication systems.
+Course Objectives:
+- Understand signal representation and processing
+- Learn Fourier transforms and filtering
+- Apply DSP to real problems
+Assessment: Lab work (50%), problem sets (25%), exam (25%)
+
+---
+
+COURSE: 23AID203
+Title: Web Development and APIs
+Credits: 3
+Prerequisites: 23AID103
+Description: Building modern web applications and APIs. Covers HTML, CSS, JavaScript,
+backend development, RESTful APIs, and web frameworks.
+Course Objectives:
+- Build responsive web interfaces
+- Develop RESTful APIs
+- Understand frontend and backend integration
+Assessment: Web projects (70%), quizzes (20%), participation (10%)
+
+---
+
+COURSE: 23AID204
+Title: Software Engineering
+Credits: 3
+Prerequisites: 23AID104
+Description: Software development methodologies, design patterns, version control,
+testing, documentation, and project management.
+Course Objectives:
+- Understand SDLC and methodologies
+- Learn design patterns and best practices
+- Master software testing and documentation
+Assessment: Design documents (30%), projects (50%), exam (20%)
+
+---
+
+COURSE: 23MAT208
+Title: Probability and Statistics
+Credits: 3
+Prerequisites: 23MAT107
+Description: Probability distributions, statistical inference, hypothesis testing,
+regression analysis, and Bayesian methods.
+Course Objectives:
+- Master probability theory
+- Learn statistical inference techniques
+- Understand regression and correlation
+Assessment: Problem sets (30%), quizzes (30%), final project (40%)
+
+================================================================================
+SEMESTER 4 COURSES
+================================================================================
+
+COURSE: 23AID301
+Title: Deep Learning
+Credits: 4
+Prerequisites: 23AID201, 23MAT208
+Description: Deep neural networks, convolutional neural networks (CNNs), recurrent
+neural networks (RNNs), and transfer learning. Practical implementation using
+TensorFlow/PyTorch.
+Course Objectives:
+- Design and train deep neural networks
+- Understand CNNs for computer vision
+- Apply RNNs to sequence data
+- Master transfer learning techniques
+Assessment: Programming projects (60%), paper reviews (20%), exam (20%)
+
+---
+
+COURSE: 23AID302
+Title: Natural Language Processing
+Credits: 3
+Prerequisites: 23AID201, 23AID105
+Description: Text processing, language models, sentiment analysis, machine translation,
+and chat systems. Introduction to transformers and attention mechanisms.
+Course Objectives:
+- Understand NLP fundamentals
+- Work with language models
+- Build NLP applications
+- Learn transformer architectures
+Assessment: NLP projects (70%), analysis papers (20%), participation (10%)
+
+---
+
+COURSE: 23AID303
+Title: Computer Vision
+Credits: 3
+Prerequisites: 23AID201, 23CSC202
+Description: Image processing, feature extraction, object detection, segmentation,
+and recognition. Applications of deep learning to vision tasks.
+Course Objectives:
+- Understand image representation
+- Master feature extraction techniques
+- Implement vision models
+- Work with state-of-the-art architectures
+Assessment: Vision projects (70%), quizzes (20%), exam (10%)
+
+---
+
+COURSE: 23AID304
+Title: Reinforcement Learning
+Credits: 3
+Prerequisites: 23AID201, 23AID202
+Description: Markov Decision Processes, value iteration, policy gradients, Q-learning,
+and multi-agent systems. Applications to game playing and robotics.
+Course Objectives:
+- Understand MDPs and dynamic programming
+- Master Q-learning and policy gradients
+- Design RL agents
+- Apply RL to control problems
+Assessment: RL projects (70%), assignments (20%), participation (10%)
+
+---
+
+COURSE: 23AID305
+Title: AI Ethics and Safety
+Credits: 3
+Prerequisites: 23AID201, 23AID202
+Description: Ethical implications of AI, bias in machine learning, fairness,
+transparency, accountability, and alignment with human values.
+Course Objectives:
+- Understand ethical frameworks for AI
+- Identify and mitigate bias
+- Learn responsible AI practices
+- Discuss AI safety challenges
+Assessment: Essays (40%), debates (30%), project (30%)
+
+---
+
+COURSE: 23AID306
+Title: Advanced Database Systems
+Credits: 3
+Prerequisites: 23AID106
+Description: Advanced database topics including NoSQL databases, distributed systems,
+data warehousing, and big data technologies.
+Course Objectives:
+- Understand NoSQL and distributed databases
+- Learn big data technologies
+- Design scalable database systems
+Assessment: Projects (60%), presentations (20%), exam (20%)
+
+================================================================================
+SEMESTER 5 (JUNIOR YEAR) - ELECTIVES & SPECIALIZATION
+================================================================================
+
+COURSE: 23AID401
+Title: Robotics and Autonomous Systems
+Credits: 4
+Prerequisites: 23AID202, 23AID304
+Description: Robot perception, planning, control, and learning. Applications to
+autonomous vehicles, drones, and robotic arms.
+Course Objectives:
+- Understand robot kinematics and dynamics
+- Master path planning algorithms
+- Implement robot control systems
+- Learn sensor fusion
+Assessment: Robotics projects (70%), reports (20%), exam (10%)
+
+---
+
+COURSE: 23AID402
+Title: Knowledge Graphs and Semantic Web
+Credits: 3
+Prerequisites: 23AID106, 23AID302
+Description: Knowledge representation using graphs, ontologies, RDF, and semantic
+technologies. Applications in knowledge management and AI systems.
+Course Objectives:
+- Design knowledge graphs
+- Learn ontology engineering
+- Understand semantic reasoning
+Assessment: Knowledge graph projects (70%), quizzes (20%), participation (10%)
+
+---
+
+COURSE: 23AID403
+Title: Federated and Privacy-Preserving ML
+Credits: 3
+Prerequisites: 23AID201
+Description: Federated learning, differential privacy, secure multi-party computation,
+and privacy-preserving machine learning.
+Course Objectives:
+- Understand federated learning architectures
+- Learn differential privacy techniques
+- Implement privacy-preserving ML
+Assessment: Research projects (60%), paper reviews (30%), participation (10%)
+
+---
+
+COURSE: 23AID404
+Title: Graph Neural Networks
+Credits: 3
+Prerequisites: 23AID201, 23AID105
+Description: Graph representation learning, graph neural networks, node classification,
+link prediction, and applications to social networks and molecules.
+Course Objectives:
+- Understand graph embeddings
+- Master GNN architectures
+- Apply GNNs to real problems
+Assessment: GNN projects (70%), assignments (20%), exam (10%)
+
+---
+
+COURSE: 23CSC301
+Title: Cloud Computing and Distributed Systems
+Credits: 3
+Prerequisites: 23AID204, 23AID306
+Description: Cloud platforms, distributed computing, containerization, microservices,
+and serverless architectures.
+Course Objectives:
+- Deploy applications on cloud platforms
+- Understand distributed system principles
+- Work with containerization tools
+- Design scalable architectures
+Assessment: Cloud projects (70%), presentations (20%), participation (10%)
+
+---
+
+COURSE: 23AID405
+Title: Generative AI and Large Language Models
+Credits: 3
+Prerequisites: 23AID201, 23AID302
+Description: Generative models, diffusion models, GANs, variational autoencoders,
+and large language models. Practical applications and fine-tuning.
+Course Objectives:
+- Understand generative model architectures
+- Work with LLMs (ChatGPT, Claude, etc.)
+- Fine-tune models for specific tasks
+- Understand limitations and risks
+Assessment: Generative AI projects (70%), paper reviews (20%), participation (10%)
+
+================================================================================
+SEMESTER 6 - SPECIALIZATION & INTERNSHIP PREPARATION
+================================================================================
+
+COURSE: 23AID501
+Title: Advanced Topics in AI
+Credits: 3
+Prerequisites: Variable (depends on topic)
+Description: In-depth exploration of cutting-edge AI topics such as meta-learning,
+causal inference, multi-modal learning, or emerging AI architectures.
+Course Objectives:
+- Explore frontier topics in AI research
+- Read and analyze recent papers
+- Implement novel methods
+Assessment: Research papers (40%), implementation (40%), presentation (20%)
+
+---
+
+COURSE: 23AID502
+Title: AI Capstone Project 1
+Credits: 3
+Prerequisites: 23AID204 (Software Engineering)
+Description: First phase of capstone project. Students propose, design, and plan
+an AI system. Includes technical specification and prototype development.
+Course Objectives:
+- Define research/development problem
+- Design solution architecture
+- Create technical specifications
+- Build initial prototype
+Assessment: Project proposal (20%), design document (30%), prototype (50%)
+
+---
+
+COURSE: 23AID503
+Title: Business and AI Strategy
+Credits: 3
+Prerequisites: None
+Description: AI product development, business models, market analysis, entrepreneurship,
+and bringing AI solutions to market.
+Course Objectives:
+- Understand AI business models
+- Develop AI product strategies
+- Learn market analysis
+- Understand Go-to-Market strategies
+Assessment: Business plan (40%), case studies (30%), presentations (30%)
+
+---
+
+COURSE: 23AID504
+Title: Human-AI Interaction
+Credits: 3
+Prerequisites: 23PSY101 or equivalent
+Description: Designing AI systems for human interaction, HCI principles, user studies,
+accessibility, and user experience in AI systems.
+Course Objectives:
+- Design human-centered AI systems
+- Conduct user research
+- Evaluate AI system usability
+- Understand accessibility in AI
+Assessment: HCI projects (70%), user studies (20%), participation (10%)
+
+================================================================================
+SEMESTER 7 - CAPSTONE & SPECIALIZATION
+================================================================================
+
+COURSE: 23AID505
+Title: AI Capstone Project 2
+Credits: 4
+Prerequisites: 23AID502
+Description: Second phase of capstone project. Implementation, testing, evaluation,
+and documentation of the AI system.
+Course Objectives:
+- Implement complete AI system
+- Conduct comprehensive evaluation
+- Write technical documentation
+- Prepare for deployment
+Assessment: Implementation (50%), testing/evaluation (30%), documentation (20%)
+
+---
+
+COURSE: 23AID506
+Title: Semantic Understanding and Reasoning
+Credits: 3
+Prerequisites: 23AID302, 23AID402
+Description: Advanced NLP for semantic understanding, machine reading comprehension,
+question answering, and knowledge-based reasoning.
+Course Objectives:
+- Implement semantic parsers
+- Build QA systems
+- Master reading comprehension models
+Assessment: NLP projects (70%), assignments (20%), exam (10%)
+
+===============================================================================
+PROGRAM REQUIREMENTS SUMMARY
+===============================================================================
+
+GENERAL EDUCATION (15 credits required):
+- Professional Communication: 23ENG101 (3 credits)
+- Cognitive Science: 23PSY101 (3 credits)
+- AI Ethics and Safety: 23AID305 (3 credits)
+- Electives: 6 credits (any upper-level courses)
+
+CORE MATHEMATICS (11 credits required):
+- 23MAT106: Mathematics for Intelligent Systems 1 (4)
+- 23MAT107: Mathematics for Intelligent Systems 2 (4)
+- 23MAT208: Probability and Statistics (3)
+
+CORE COMPUTER SCIENCE (10 credits required):
+- 23AID101: Computational Thinking (3)
+- 23AID104: Data Structures and Algorithms (4)
+- 23AID106: Database Fundamentals (3)
+
+CORE AI & MACHINE LEARNING (11 credits required):
+- 23AID201: Introduction to Machine Learning (4)
+- 23AID202: Artificial Intelligence Fundamentals (4)
+- 23AID301: Deep Learning (4)
+
+SPECIALIZATION ELECTIVES (At least 12 credits):
+Choose from: 23AID302, 23AID303, 23AID304, 23AID401, 23AID402, 23AID403,
+23AID404, 23AID405, 23AID501
+
+CAPSTONE PROJECT (7 credits):
+- 23AID502: AI Capstone Project 1 (3)
+- 23AID505: AI Capstone Project 2 (4)
+
+TOTAL MINIMUM CREDITS: 120
+
+================================================================================
+PREREQUISITE DEPENDENCY CHART
+================================================================================
+
+Foundation Level (Semester 1):
+- 23MAT106 → No prerequisites
+- 23AID101 → No prerequisites
+- 23AID102 → No prerequisites
+- 23PHY104 → No prerequisites (Co-req: 23MAT106)
+- 23AID103 → No prerequisites
+- 23ENG101 → No prerequisites
+
+Intermediate Level (Semester 2):
+- 23MAT107 → Requires: 23MAT106
+- 23AID104 → Requires: 23AID101, 23AID103
+- 23CSC201 → Requires: 23PHY104
+- 23AID105 → Requires: 23MAT106
+- 23AID106 → Requires: 23AID104
+- 23PSY101 → No prerequisites
+
+Advanced Level (Semester 3):
+- 23AID201 → Requires: 23MAT107, 23AID104
+- 23AID202 → Requires: 23AID104, 23AID105
+- 23CSC202 → Requires: 23MAT107, 23AID102
+- 23AID203 → Requires: 23AID103
+- 23AID204 → Requires: 23AID104
+- 23MAT208 → Requires: 23MAT107
+
+Advanced Specialization (Semester 4):
+- 23AID301 → Requires: 23AID201, 23MAT208
+- 23AID302 → Requires: 23AID201, 23AID105
+- 23AID303 → Requires: 23AID201, 23CSC202
+- 23AID304 → Requires: 23AID201, 23AID202
+- 23AID305 → Requires: 23AID201, 23AID202
+- 23AID306 → Requires: 23AID106
+
+Research Level (Semester 5+):
+- 23AID401 → Requires: 23AID202, 23AID304
+- 23AID402 → Requires: 23AID106, 23AID302
+- 23AID403 → Requires: 23AID201
+- 23AID404 → Requires: 23AID201, 23AID105
+- 23CSC301 → Requires: 23AID204, 23AID306
+- 23AID405 → Requires: 23AID201, 23AID302
+
+Capstone & Final Year:
+- 23AID501 → Requires: Varies (upper-level courses)
+- 23AID502 → Requires: 23AID204
+- 23AID505 → Requires: 23AID502
+
+================================================================================
+END OF CATALOG
+================================================================================
