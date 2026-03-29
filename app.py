@@ -262,10 +262,6 @@ def create_app() -> gr.Blocks:
     """
     with gr.Blocks(
         title="Course Planning Assistant",
-        theme=gr.themes.Soft(
-            primary_hue="blue",
-            secondary_hue="sky",
-        ),
     ) as app:
         gr.Markdown(
             "# 🎓 Course Planning Assistant\n"
@@ -445,4 +441,8 @@ if __name__ == "__main__":
         server_name="127.0.0.1",
         server_port=int(os.getenv("GRADIO_SERVER_PORT", "7861")),
         share=False,
+        theme=gr.themes.Soft(
+            primary_hue="blue",
+            secondary_hue="sky",
+        ),
     )
