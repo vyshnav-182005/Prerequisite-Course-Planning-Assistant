@@ -1,162 +1,183 @@
-# Course Planning Assistant
+# Prerequisite Course Planning Assistant
 
-An AI-powered Agentic RAG (Retrieval-Augmented Generation) system that helps students plan their courses, check prerequisites, and build term plans — all grounded in their actual course catalog documents.
+An AI-powered Agentic RAG system that helps students plan their courses, check prerequisites, and build term plans — all grounded in their actual course catalog documents.
 
-Built with **LangGraph** for agent orchestration, **Ollama** for local LLM inference, **ChromaDB** for vector search, and **Gradio** for the user interface.
-
----
-
-## Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone <repo-url>
-   cd course_planning_assistant
-   ```
-
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Configure environment**
-   ```bash
-   cp .env.example .env
-   ```
-
-4. **Configure Ollama** in `.env`:
-   ```
-   OLLAMA_HOST=http://localhost:11434
-   OLLAMA_CHAT_MODEL=llama3.1:8b
-   OLLAMA_EMBED_MODEL=nomic-embed-text
-   ```
-   Make sure Ollama is running and the models are pulled.
-
-5. **Launch the app**
-   ```bash
-   python app.py
-   ```
-   The Gradio UI will be available at `http://localhost:7860`.
+Built with **CrewAI** for multi-agent orchestration, **Ollama** for local LLM inference, **ChromaDB** for vector search, **FastAPI** for the backend API, and **Next.js** for the frontend UI.
 
 ---
 
 ## Architecture
 
-### LangGraph Pipeline
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                       Next.js Frontend                          │
+│   Upload Catalog | Ask Questions | Plan My Term                 │
+└───────────────────┬─────────────────────────────────────────────┘
+                    │ REST API (JSON)
+                    ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      FastAPI Backend (api.py)                   │
+│  POST /api/upload  │  POST /api/plan  │  GET /api/status        │
+└───────────────────┬─────────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    CrewAI Pipeline (src/crew.py)                │
+│                                                                  │
+│   1. Intake Validation (profile completeness check)             │
+│        ↓ (if complete)                                           │
+│   2. Retriever Agent ─→ CatalogRetrievalTool + ProgramTool      │
+│        ↓                          ↓                             │
+│   3. Planner Agent ─────── ChromaDB (vector search)            │
+│        ↓                                                         │
+│   4. Verifier Agent (citation audit)                            │
+│        ↓                                                         │
+│   Final cited course plan                                       │
+└─────────────────────────────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                  ChromaDB + Ollama                              │
+│   Embedding: nomic-embed-text  │  LLM: llama3.1:8b             │
+└─────────────────────────────────────────────────────────────────┘
+```
 
-The system is built as a 4-node LangGraph `StateGraph` with conditional routing. Each node is a plain Python function that reads/writes a shared `PlannerState` (TypedDict). The graph enforces a strict flow: profile validation → retrieval → planning → verification, with an automatic retry loop for failed citation checks.
+### CrewAI Agents
 
-### Node Responsibilities
+| Agent | Role | Tools |
+|-------|------|-------|
+| **Retriever Agent** | Searches ChromaDB for catalog chunks relevant to the student's profile and query | `CatalogRetrievalTool`, `ProgramRequirementsTool` |
+| **Planner Agent** | Generates a structured, citation-backed term plan from retrieved chunks | — (uses context from Retriever) |
+| **Verifier Agent** | Audits every citation in the plan; checks format, validity, and prerequisite logic | `CatalogRetrievalTool` |
 
-| Node | Responsibility |
-|------|---------------|
-| **Intake Node** | Validates the student profile is complete (courses, major, year, term, credits). If fields are missing, generates clarifying questions via Claude and short-circuits to END. |
-| **Retriever Node** | Builds composite search queries from the student's profile + question, retrieves top-k chunks from ChromaDB, deduplicates results from both primary and program-requirement queries. |
-| **Planner Node** | Generates a structured course plan using *only* the retrieved catalog chunks. Every recommendation must carry a `[Source, Chunk, Section]` citation. |
-| **Verifier Node** | Audits every claim: checks citation existence, format, and prerequisite logic soundness. Failed verifications are sent back to the Planner for revision (max 3 retries). |
+All agents use a local Ollama LLM via a custom LangChain `BaseLLM` wrapper with automatic retry on transient errors.
 
-### Graph Flow
+### Key Design Decisions
+
+- **Sequential CrewAI Process**: Retriever → Planner → Verifier ensures each agent's output feeds the next.
+- **Intake validation** runs before the Crew to short-circuit with clarifying questions if the student profile is incomplete.
+- **Citation-first planning**: Planner is forbidden from recommending courses without catalog citations.
+- **Word-based chunking**: Ingestion uses word-count chunking (no external tokenizer downloads needed).
+- **Ollama embedding proxy**: Custom `__call__` method ensures ChromaDB always receives `List[List[float]]`.
+
+---
+
+## Setup
+
+### Prerequisites
+
+- Python 3.12+
+- Node.js 18+
+- [Ollama](https://ollama.ai/) running locally with:
+  - `ollama pull llama3.1:8b`
+  - `ollama pull nomic-embed-text`
+
+### 1. Clone the repository
+
+```bash
+git clone <repo-url>
+cd Prerequisite-Course-Planning-Assistant
+```
+
+### 2. Install Python dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Configure environment
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` if your Ollama host differs from `http://localhost:11434`.
+
+### 4. Start the FastAPI backend
+
+```bash
+uvicorn api:app --host 0.0.0.0 --port 8000 --reload
+```
+
+The API will be available at `http://localhost:8000`.
+Interactive docs: `http://localhost:8000/docs`
+
+### 5. Start the Next.js frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The UI will be available at `http://localhost:3000`.
+
+---
+
+## Usage
+
+1. **Upload Catalog** tab — Upload your course catalog PDF(s) to index them into ChromaDB.
+2. **Ask Questions** tab — Fill in your profile and ask specific questions (e.g. "What are the prerequisites for CS301?").
+3. **Plan My Term** tab — Fill in your profile to get a complete, verified term plan with citations.
+
+---
+
+## Project Structure
 
 ```
-START
-  │
-  ▼
-┌──────────────┐
-│  intake_node │
-└──────┬───────┘
-       │
-       ├── is_profile_complete = False
-       │     → return clarifying questions → END
-       │
-       └── is_profile_complete = True
-             │
-             ▼
-      ┌───────────────┐
-      │ retriever_node│
-      └───────┬───────┘
-              │
-              ▼
-      ┌───────────────┐ ◄──── retry (max 3) ────┐
-      │  planner_node │                          │
-      └───────┬───────┘                          │
-              │                                  │
-              ▼                                  │
-      ┌───────────────┐                          │
-      │ verifier_node │                          │
-      └───────┬───────┘                          │
-              │                                  │
-              ├── verified = True  ───────► END  │
-              │                                  │
-              ├── verified = False               │
-              │   retry_count < 3 ───────────────┘
-              │
-              └── verified = False
-                  retry_count >= 3 ───► END (with warning)
+.
+├── api.py                    # FastAPI server (replaces Gradio app.py)
+├── requirements.txt          # Python dependencies
+├── .env.example              # Environment template
+├── src/
+│   ├── crew.py               # CrewAI agents, tools, and pipeline (replaces LangGraph)
+│   ├── ingestion.py          # PDF/HTML document loading and chunking
+│   ├── vectorstore.py        # ChromaDB operations (index, retrieve, clear)
+│   ├── state.py              # Pydantic models and TypedDict state
+│   ├── prompts.py            # System prompts for each agent
+│   └── utils.py              # Shared helper functions
+├── evaluation/
+│   ├── evaluate.py           # Evaluation script (citation coverage, etc.)
+│   └── test_queries.py       # 25 test queries across query types
+├── material/                 # Sample course catalog PDFs
+└── frontend/                 # Next.js UI
+    ├── app/
+    │   ├── page.tsx          # Main page with 3-tab layout
+    │   ├── layout.tsx        # Root layout
+    │   └── globals.css       # Global styles
+    └── lib/
+        └── api.ts            # API client for the FastAPI backend
 ```
 
 ---
 
-## Chunking & Retrieval Strategy
+## Chunking Strategy
 
 | Parameter | Value | Rationale |
 |-----------|-------|-----------|
-| **Chunk size** | 500 tokens | Large enough for a full course description + prerequisites, small enough to avoid diluting relevance |
-| **Overlap** | 50 tokens | Prevents information loss at chunk boundaries, especially for prerequisite chains that span paragraphs |
-| **Top-k** | 5 | Balances recall with precision; combined with a second program-requirements query, total context is up to ~10 unique chunks |
-| **Similarity** | Cosine | Standard metric for sentence-transformer embeddings; works well with normalized vectors from all-MiniLM-L6-v2 |
-| **Embeddings** | all-MiniLM-L6-v2 | Fast, lightweight (80 MB), strong performance on semantic similarity benchmarks |
+| **Chunk size** | 500 words | Covers a full course description + prerequisites |
+| **Overlap** | 50 words | Prevents information loss at chunk boundaries |
+| **Top-k** | 5 per query | Two queries (main + program requirements) = up to 10 unique chunks |
+| **Similarity** | Cosine | Standard for normalized sentence-transformer embeddings |
+| **Embeddings** | nomic-embed-text (Ollama) | Local inference, no API key required |
 
 ---
 
-## Prompts Overview
+## Evaluation
 
-| Prompt | Key Rules |
-|--------|-----------|
-| **Intake** | Check 5 required fields; generate ≤5 clarifying questions; never guess missing info |
-| **Retriever** | Only use catalog chunks; always cite source + chunk_id; say "NOT FOUND IN CATALOG" if absent |
-| **Planner** | Strict citation format `[Source, Chunk, Section]` for every claim; forbidden from using general knowledge; structured output format enforced |
-| **Verifier** | Three-check audit per course (citation exists, format valid, prereq logic correct); overall PASS/FAIL; zero tolerance for uncited claims |
+```bash
+python evaluation/evaluate.py
+```
 
----
-
-## Sources
-
-| URL | Date Accessed | What It Covers |
-|-----|--------------|----------------|
-| [Google Generative AI Docs](https://ai.google.dev/docs) | 2024-12 | Gemini API usage, model configuration, free tier |
-| [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) | 2024-12 | StateGraph, conditional edges, node functions |
-| [ChromaDB Docs](https://docs.trychroma.com) | 2024-12 | Persistent client, embedding functions, cosine similarity |
-| [Sentence-Transformers](https://www.sbert.net) | 2024-12 | all-MiniLM-L6-v2 model for embeddings |
-| [Gradio Docs](https://www.gradio.app/docs) | 2024-12 | Blocks API, tabs, file upload, event handlers |
-
----
-
-## Evaluation Results
-
-| Metric | Score |
-|--------|-------|
-| Citation Coverage | — |
-| Eligibility Correctness | — |
-| Abstention Accuracy | — |
-
-> **Note:** Scores depend on the catalog documents loaded. Run `python evaluation/evaluate.py` after indexing your catalog to fill in these values.
+Metrics computed:
+- **Citation Coverage Rate** — fraction of responses with ≥1 citation
+- **Eligibility Correctness** — correct eligible/ineligible recommendations
+- **Abstention Accuracy** — correct abstention for out-of-catalog queries
 
 ---
 
 ## Key Failure Modes
 
-1. **Sparse Catalogs / Missing Sections**: If the uploaded catalog lacks prerequisite details for certain courses, the planner may produce over-cautious responses (abstaining even for courses that exist) because it finds no supporting chunks.
-
-2. **Chunk Boundary Splits**: Prerequisite chains that span across page breaks or sections may be split into different chunks, causing the verifier to flag valid claims when the cited chunk only contains half the information.
-
-3. **Citation Format Sensitivity**: The verifier is strict about citation format. Minor formatting deviations from the planner (e.g., extra spaces, different quote styles) cause false-negative verification failures, triggering unnecessary retry loops.
-
----
-
-## Next Improvements
-
-1. **Hybrid Retrieval**: Combine dense embeddings with BM25 keyword search to improve recall for exact course codes (e.g., "CS301") which dense models sometimes overlook.
-
-2. **Conversation Memory**: Add multi-turn memory so students can ask follow-up questions without re-entering their profile, and the system can reference earlier answers.
-
-3. **Graph Visualization**: Add a tab to the Gradio UI showing real-time pipeline progress — which node is active, how many retries have been attempted, and what chunks were retrieved.
+1. **Sparse Catalogs**: Missing prerequisite details cause the planner to abstain.
+2. **Chunk Boundary Splits**: Prerequisite chains spanning page breaks may be split.
+3. **Ollama Unavailable**: All LLM-dependent operations fail gracefully with error messages in the UI.
