@@ -21,28 +21,19 @@ CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "50"))
 
 
 # ── Tokenizer helper ──────────────────────────────────────────
-def _get_tokenizer():
-    """Return a tiktoken tokenizer for counting tokens."""
-    import tiktoken
-    return tiktoken.get_encoding("cl100k_base")
-
-
 def _count_tokens(text: str) -> int:
-    """Count the number of tokens in a text string."""
-    enc = _get_tokenizer()
-    return len(enc.encode(text))
-
-
-def _decode_tokens(tokens: list) -> str:
-    """Decode a list of token IDs back to a string."""
-    enc = _get_tokenizer()
-    return enc.decode(tokens)
+    """Count approximate tokens by splitting on whitespace (avoids network calls)."""
+    return len(text.split())
 
 
 def _encode_tokens(text: str) -> list:
-    """Encode a text string into token IDs."""
-    enc = _get_tokenizer()
-    return enc.encode(text)
+    """Return a list of words (used as a token proxy for chunking)."""
+    return text.split()
+
+
+def _decode_tokens(tokens: list) -> str:
+    """Reconstruct text from a word list."""
+    return " ".join(tokens)
 
 
 # ── Text Cleaning ─────────────────────────────────────────────

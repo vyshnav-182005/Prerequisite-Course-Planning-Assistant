@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 
 load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env"))
 
-from src.graph import run_pipeline
+from src.crew import run_pipeline
 from src.utils import extract_citations, has_abstention_phrase
 from evaluation.test_queries import ALL_QUERIES
 
