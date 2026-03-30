@@ -23,22 +23,22 @@ Built with **CrewAI** for multi-agent orchestration, **Ollama** for local LLM in
                     ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    CrewAI Pipeline (src/crew.py)                │
-│                                                                  │
+│                                                                 │
 │   1. Intake Validation (profile completeness check)             │
-│        ↓ (if complete)                                           │
+│        ↓ (if complete)                                          │
 │   2. Retriever Agent ─→ CatalogRetrievalTool + ProgramTool      │
 │        ↓                          ↓                             │
-│   3. Planner Agent ─────── ChromaDB (vector search)            │
-│        ↓                                                         │
+│   3. Planner Agent ─────── ChromaDB (vector search)             │
+│        ↓                                                        │
 │   4. Verifier Agent (citation audit)                            │
-│        ↓                                                         │
+│        ↓                                                        │
 │   Final cited course plan                                       │
 └─────────────────────────────────────────────────────────────────┘
                     │
                     ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                  ChromaDB + Ollama                              │
-│   Embedding: nomic-embed-text  │  LLM: llama3.1:8b             │
+│   Embedding: nomic-embed-text  │  LLM: llama3.1:8b              │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
